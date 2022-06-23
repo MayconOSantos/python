@@ -1,0 +1,22 @@
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+
+#conexão
+url ="https://projetoxxxx.atlassian.net/rest/api/2/search"
+login = login #nome
+token = token #token de acesso
+
+#autenticação da conexão
+auth = HTTPBasicAuth(login,
+                     token)
+headers = {"Accept": "application/json"}
+
+print("Conectado ao Jira com o login: "+ login)
+# Mention the JQL query.
+# Here, all issues, of a project, are
+# fetched,as,no criteria is mentioned.
+query = {#'jql': 'project =xx', #'jql': 'type =PRB',"startAt":0,"maxResults":100}
+
+# Create a request object with above parameters.
+response = requests.request("GET",url,headers=headers,auth=auth,params=query)
